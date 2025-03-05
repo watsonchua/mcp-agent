@@ -183,7 +183,10 @@ class MCPConnectionManager:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         logger.debug("MCPConnectionManager: shutting down all server tasks...")
         if self._tg:
-            await self._tg.__aexit__(exc_type, exc_val, exc_tb)
+            try:
+                await self._tg.__aexit__(exc_type, exc_val, exc_tb)
+            except AttributeError:  # Handle missing `_exceptions`
+                pass
         self._tg = None
 
     async def launch_server(

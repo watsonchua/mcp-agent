@@ -1,6 +1,15 @@
 from abc import abstractmethod
 
-from typing import Generic, List, Optional, Protocol, Type, TypeVar, TYPE_CHECKING
+from typing import (
+    Generic,
+    List,
+    Optional,
+    Protocol,
+    Type,
+    TypeVar,
+    Union,
+    TYPE_CHECKING,
+)
 
 from pydantic import Field
 
@@ -20,6 +29,7 @@ from mcp_agent.workflows.llm.llm_selector import ModelSelector
 if TYPE_CHECKING:
     from mcp_agent.agents.agent import Agent
     from mcp_agent.context import Context
+    from mcp_agent.logging.logger import Logger
 
 MessageParamT = TypeVar("MessageParamT")
 """A type representing an input message to an LLM."""
@@ -174,6 +184,7 @@ class AugmentedLLM(ContextDependent, AugmentedLLMProtocol[MessageParamT, Message
     # TODO: saqadri - consider adding middleware patterns for pre/post processing of messages, for now we have pre/post_tool_call
 
     provider: str | None = None
+    logger: Union["Logger", None] = None
 
     def __init__(
         self,

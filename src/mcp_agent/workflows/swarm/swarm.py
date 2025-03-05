@@ -260,7 +260,7 @@ class Swarm(AugmentedLLM[MessageParamT, MessageT], Generic[MessageParamT, Messag
                 self.context_variables.update(content.context_variables)
                 if content.agent:
                     # Set the new agent as the current agent
-                    self.set_agent(content.agent)
+                    await self.set_agent(content.agent)
 
                 contents.append(TextContent(type="text", text=content.resource.text))
             else:

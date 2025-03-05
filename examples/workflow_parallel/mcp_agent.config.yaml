@@ -3,7 +3,7 @@ $schema: ../../schema/mcp-agent.config.schema.json
 
 execution_engine: asyncio
 logger:
-  type: file
+  type: console
   level: debug
   path: "./workflow_parallel.jsonl"
   batch_size: 100
@@ -15,4 +15,4 @@ logger:
 
 openai:
   # Secrets (API keys, etc.) are stored in an mcp_agent.secrets.yaml file which can be gitignored
-  default_model: "gpt-4o-mini"
+  default_model: "gpt-4o"

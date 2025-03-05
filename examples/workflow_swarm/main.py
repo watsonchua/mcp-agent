@@ -245,7 +245,7 @@ to LAX in Los Angeles. The flight # is 1919. The flight departure date is 3pm ET
     for test in test_inputs[:1]:
         result = await swarm.generate_str(test)
         logger.info(f"Result: {result}")
-        swarm.set_agent(triage_agent)
+        await swarm.set_agent(triage_agent)
 
     await triage_agent.shutdown()
 
