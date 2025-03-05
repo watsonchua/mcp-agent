@@ -65,8 +65,14 @@ class AnthropicAugmentedLLM(AugmentedLLM[MessageParam, Message]):
             speedPriority=0.4,
             intelligencePriority=0.3,
         )
+
+        default_model = (
+            self.context.config.anthropic.default_model
+            if self.context.config.anthropic
+            else "claude-3-5-sonnet-20241022"
+        )
         self.default_request_params = self.default_request_params or RequestParams(
-            model="claude-3-5-sonnet-20241022",
+            model=default_model,
             modelPreferences=self.model_preferences,
             maxTokens=2048,
             systemPrompt=self.instruction,
