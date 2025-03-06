@@ -41,8 +41,9 @@ settings = Settings(
     ),
 )
 
-# Settings can either be specified programmatically, or loaded from mcp_agent.config.yaml/mcp_agent.secrets.yaml
-app = MCPApp(name="mcp_basic_agent", settings=settings)
+# Settings can either be specified programmatically,
+# or loaded from mcp_agent.config.yaml/mcp_agent.secrets.yaml
+app = MCPApp(name="mcp_basic_agent")  # settings=settings)
 
 
 async def example_usage():
