@@ -156,6 +156,7 @@ cython_debug/
 
 # Make sure secrets files aren't added
 examples/**/*.secrets.yaml
+*.secrets.yaml
 
 # but make sure example files are
 !examples/**/*.secrets.yaml.example
