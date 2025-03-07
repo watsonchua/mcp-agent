@@ -2,7 +2,7 @@ $schema: ../../schema/mcp-agent.config.schema.json
 
 execution_engine: asyncio
 logger:
-  type: file
+  type: console
   level: debug
 
 mcp:
@@ -17,4 +17,4 @@ mcp:
 openai:
   # Secrets (API keys, etc.) are stored in an mcp_agent.secrets.yaml file which can be gitignored
   #  default_model: "o3-mini"
-  default_model: "gpt-4o-mini"
+  default_model: "gpt-4o-mini-eastus"

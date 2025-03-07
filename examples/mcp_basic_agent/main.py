@@ -17,6 +17,8 @@ from mcp_agent.workflows.llm.llm_selector import ModelPreferences
 from mcp_agent.workflows.llm.augmented_llm_anthropic import AnthropicAugmentedLLM
 from mcp_agent.workflows.llm.augmented_llm_openai import OpenAIAugmentedLLM
 
+# Settings not used. Defined in config file
+
 settings = Settings(
     execution_engine="asyncio",
     logger=LoggerSettings(type="file", level="debug"),
@@ -41,8 +43,9 @@ settings = Settings(
     ),
 )
 
-# Settings can either be specified programmatically, or loaded from mcp_agent.config.yaml/mcp_agent.secrets.yaml
-app = MCPApp(name="mcp_basic_agent", settings=settings)
+# Settings can either be specified programmatically,
+# or loaded from mcp_agent.config.yaml/mcp_agent.secrets.yaml
+app = MCPApp(name="mcp_basic_agent")  # settings=settings)
 
 
 async def example_usage():
@@ -75,8 +78,9 @@ async def example_usage():
             )
             logger.info(f"mcp_agent.config.yaml contents: {result}")
 
+            # No switching. Uncomment to switch to anthropic
             # Let's switch the same agent to a different LLM
-            llm = await finder_agent.attach_llm(AnthropicAugmentedLLM)
+            # llm = await finder_agent.attach_llm(AnthropicAugmentedLLM)
 
             result = await llm.generate_str(
                 message="Print the first 2 paragraphs of https://www.anthropic.com/research/building-effective-agents",
