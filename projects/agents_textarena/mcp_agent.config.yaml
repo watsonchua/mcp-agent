@@ -1,0 +1,41 @@
+$schema: ../../schema/mcp-agent.config.schema.json
+
+execution_engine: asyncio
+logger:
+  # type: console
+  type: file
+  filename: mcp_agent.log
+  level: debug
+  batch_size: 100
+  flush_interval: 2
+  max_queue_size: 2048
+  http_endpoint:
+  http_headers:
+  http_timeout: 5
+
+mcp:
+  servers:
+    # google-search:
+    #   command: "npx"
+    #   args: ["google-search-mcp"]
+    fetch:
+      command: "uvx"
+      args: ["mcp-server-fetch", "--ignore-robots-txt"]
+    filesystem:
+      command: "npx"
+      args: ["-y", "@modelcontextprotocol/server-filesystem"]
+    brave-search: 
+      command: "npx"
+      args: ["-y", "@modelcontextprotocol/server-brave-search"]
+    mcp-code-executor:
+      command: node
+      args: ["/home/watsonchua/work/mcp_code_executor/build/index.js"]
+      env:
+        CODE_STORAGE_DIR: /home/watsonchua/work/temp/storage
+        CONDA_ENV_NAME: base
+
+openai:
+  # Secrets (API keys, etc.) are stored in an mcp_agent.secrets.yaml file which can be gitignored
+  # default_model: o3-mini
+  default_model: gpt-4o-eastus
+  reasoning_effort: high
